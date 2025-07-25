@@ -1,0 +1,115 @@
+<div class="auth-background">
+  <div class="contenedor-principal" [ngClass]="{ 'panel-activo': isRegisterActive }" id="contenedor-principal">
+
+    <!-- Registro -->
+    <div class="contenedor-formulario registrar">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <h1>Crear Cuenta</h1>
+
+        <div *ngIf="registerError" class="error-message">
+          {{ registerError }}
+        </div>
+
+        <input type="text" formControlName="name" placeholder="Nombre completo" />
+        <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="error-message">
+          {{ getRegisterErrorMessage('name') }}
+        </div>
+
+        <input type="email" formControlName="email" placeholder="Correo electrónico" />
+        <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="error-message">
+          {{ getRegisterErrorMessage('email') }}
+        </div>
+
+        <!-- Contraseña -->
+        <div class="password-wrapper">
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Contraseña" />
+          <button type="button" (click)="showPassword = !showPassword" class="toggle-visibility">
+            {{ showPassword ? '👁' : '👁‍🗨' }}
+          </button>
+        </div>
+        <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+          class="error-message">
+          {{ getRegisterErrorMessage('password') }}
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div class="password-wrapper">
+          <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword"
+            placeholder="Confirmar contraseña" />
+          <button type="button" (click)="showConfirmPassword = !showConfirmPassword" class="toggle-visibility">
+            {{ showConfirmPassword ? '👁' : '👁‍🗨' }}
+          </button>
+        </div>
+        <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.hasError('mismatch')"
+          class="error-message">
+          {{ getRegisterErrorMessage('confirmPassword') }}
+        </div>
+
+
+        <!-- Este input no lo ve el usuario, define el rol por defecto -->
+        <input type="hidden" formControlName="role" />
+
+        <button type="submit" [disabled]="isLoading">
+          {{ isLoading ? 'Registrando...' : 'Registrarse' }}
+        </button>
+      </form>
+    </div>
+
+
+    <!-- Ingreso -->
+    <div class="contenedor-formulario ingresar">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <h1>Iniciar Sesión</h1>
+
+        <div *ngIf="loginError" class="error-message">
+          {{ loginError }}
+        </div>
+
+        <div class="redes-sociales"></div>
+        <span> Ingresa con tu cuenta</span>
+
+        <input type="email" formControlName="email" placeholder="Correo electrónico" />
+        <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="error-message">
+          Ingresa un correo válido
+        </div>
+
+        <!-- Modifica la sección de contraseña en el login así: -->
+        <div class="login-password-wrapper">
+          <input [type]="showLoginPassword ? 'text' : 'password'" formControlName="password" placeholder="Contraseña" />
+          <button type="button" (click)="showLoginPassword = !showLoginPassword" class="toggle-visibility">
+            {{ showLoginPassword ? '👁' : '👁‍🗨' }}
+          </button>
+        </div>
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="error-message">
+          La contraseña es requerida
+        </div>
+
+        <a href="#">¿Olvidaste tu contraseña?</a>
+
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+          <button type="submit" [disabled]="isLoading">
+            {{ isLoading ? 'Cargando...' : 'Ingresar' }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+
+    <!-- Panel lateral -->
+    <div class="contenedor-lateral">
+      <div class="panel-lateral">
+        <div class="panel-izquierdo">
+          <h1>¡Bienvenido de nuevo!</h1>
+          <p>Para continuar, ingresa con tus datos</p>
+          <button class="transparente" (click)="setRegister(false)">Iniciar Sesión</button>
+        </div>
+        <div class="panel-derecho">
+          <h1>¡Hola, nuevo usuario!</h1>
+          <p>Regístrate para comenzar tu experiencia con nosotros</p>
+          <button class="transparente" (click)="setRegister(true)">Registrarse</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

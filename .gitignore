@@ -1,0 +1,6 @@
+/api-libreria/vendor/
+/api-libreria/node_modules/
+/api-libreria/.env
+
+/angular-libreria/node_modules/
+/angular-libreria/dist/

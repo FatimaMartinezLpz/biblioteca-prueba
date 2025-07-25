@@ -1,0 +1,137 @@
+<header class="header-admin">
+  <div class="logo-admin">📚 Administración</div>
+
+  <div class="acciones-usuario">
+    <div class="cuenta-container" (click)="$event.stopPropagation()">
+      <span class="usuario" (click)="toggleCuenta($event)">Mi cuenta</span>
+      <div class="cuenta-dropdown glass-dropdown" *ngIf="cuentaAbierta">
+        <div class="cuenta-info">
+          <p class="cuenta-nombre">{{ usuario?.nombre || 'Administrador' }}</p>
+          <p class="cuenta-email">{{ usuario?.email || 'admin@email.com' }}</p>
+        </div>
+        <div class="cuenta-opciones">
+          <a href="#" class="glass-link">Configuración</a>
+          <a href="#" class="glass-link">Reportes</a>
+          <button class="btn-cerrar-sesion glass-btn" (click)="cerrarSesion($event)">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="admin-container">
+  <h1 class="titulo-seccion">Gestión de Libros</h1>
+
+  <!-- Filtros y categorías -->
+  <div class="filtros-container glass-panel">
+    <div class="categorias">
+      <button class="categoria-btn active">Todos</button>
+      <button class="categoria-btn">Destacados</button>
+      <button class="categoria-btn">Novedades</button>
+    </div>
+
+    <div class="buscador-libros">
+      <input type="text" placeholder="Buscar libros..." class="busqueda-input glass-input">
+      <button class="btn-buscar glass-btn">Buscar</button>
+    </div>
+  </div>
+
+  <!-- Lista de libros -->
+  <div class="lista-libros-container glass-panel">
+    <div class="cabecera-lista">
+      <div class="titulo-col">Título</div>
+      <div class="autor-col">Autor</div>
+      <div class="ejemplares-col">Stock</div>
+      <div class="precio-col">Precio</div>
+      <div class="acciones-col">Acciones</div>
+    </div>
+
+    <div class="libro-item" *ngFor="let libro of librosDestacados">
+      <div class="titulo-col">{{libro.title}}</div>
+      <div class="autor-col">{{libro.author}}</div>
+      <div class="ejemplares-col">{{libro.stock}}</div>
+      <div class="precio-col">${{libro.price | number}}</div>
+      <div class="acciones-col">
+        <button class="btn-editar glass-btn" (click)="editarLibro(libro)">✏️</button>
+
+        <button class="btn-eliminar glass-btn" (click)="eliminarLibro(libro)">🗑️</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón para mostrar formulario -->
+  <div class="acciones-principales">
+    <button class="btn-principal glass-btn" (click)="mostrarFormulario = !mostrarFormulario">
+      <span class="icono">+</span> Agregar Libro
+    </button>
+  </div>
+
+  <!-- Formulario flotante -->
+  <div class="formulario-flotante" *ngIf="mostrarFormulario" [@fadeInOut]>
+    <div class="formulario-contenido glass-form">
+      <div class="form-header">
+        <h2>Nuevo Libro</h2>
+        <button class="btn-cerrar" (click)="mostrarFormulario = false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="form-body">
+        <div class="form-group">
+          <label for="titulo">Título del Libro</label>
+          <input id="titulo" [(ngModel)]="nuevoLibro.title" placeholder="Ej: Cien años de soledad" class="glass-input">
+        </div>
+
+        <div class="form-group">
+          <label for="autor">Autor</label>
+          <input id="autor" [(ngModel)]="nuevoLibro.author" placeholder="Ej: Gabriel García Márquez"
+            class="glass-input">
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" [(ngModel)]="nuevoLibro.description"
+            placeholder="Ingrese una descripción del libro..." class="glass-input" rows="4"></textarea>
+          <small class="form-hint">Breve resumen del contenido del libro</small>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="precio">Precio ($)</label>
+            <input id="precio" type="number" [(ngModel)]="nuevoLibro.price" placeholder="Ej: 19.99" class="glass-input">
+          </div>
+          <div class="form-group">
+            <label for="stock">Stock disponible</label>
+            <input id="stock" type="number" [(ngModel)]="nuevoLibro.stock" placeholder="Ej: 50" class="glass-input">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="categoria">Categoría</label>
+          <input id="categoria" [(ngModel)]="nuevoLibro.category" placeholder="Ej: Novela, Ciencia Ficción, etc."
+            class="glass-input">
+          <small class="form-hint">Género o categoría del libro</small>
+        </div>
+
+        <div class="form-group">
+          <label for="portada">URL de la portada</label>
+          <input id="portada" [(ngModel)]="nuevoLibro.cover_url" placeholder="https://ejemplo.com/portada.jpg"
+            class="glass-input">
+          <small class="form-hint">Enlace a la imagen de portada del libro</small>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button class="btn-cancelar" (click)="cancelarFormulario()">Cancelar</button>
+        <button class="btn-guardar" (click)="guardarCambiosLibro()">
+          {{ libroEnEdicion ? 'Guardar Cambios' : 'Guardar Libro' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

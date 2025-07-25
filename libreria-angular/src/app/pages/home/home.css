@@ -1,0 +1,1019 @@
+/* ===== ESTILOS BASE ===== */
+:root {
+  --color-primary: #1a3e72;
+  --color-secondary: #0d2b4e;
+  --color-text: #2c3e50;
+  --color-text-light: #7f8c8d;
+  --color-background: #f5f7fa;
+  --color-card: #ffffff;
+  --color-nav: rgba(26, 62, 114, 0.95);
+  --blur-effect: blur(8px);
+  --border-radius: 8px;
+  --font-main: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 140px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background: rgba(26, 62, 114, 0.9);
+  /* Azul marino con 90% de opacidad */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 1000;
+  height: 70px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+.nav-principal {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-principal a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.nav-principal a:hover {
+  color: #f1c40f;
+}
+
+.nav-principal a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #f1c40f;
+  transition: width 0.3s;
+}
+
+.nav-principal a:hover::after {
+  width: 100%;
+}
+
+/* ===== BARRA DE CATEGORÍAS ===== */
+.nav-categorias {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: rgba(26, 62, 114, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0 5%;
+  z-index: 999;
+  height: 60px;
+  align-items: center;
+}
+
+.dropdown-categoria {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 0 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.dropbtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  min-width: 200px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  display: none;
+}
+
+.dropdown-categoria:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #2c3e50;
+  padding: 12px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.dropdown-content a:hover {
+  background: rgba(0, 113, 227, 0.1);
+  /* Efecto hover sutil */
+}
+
+/* ===== ACCIONES DE USUARIO ===== */
+.acciones-usuario {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.accion-icono {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 15px;
+  transition: all 0.3s;
+  border-radius: var(--border-radius);
+}
+
+.accion-icono:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f1c40f;
+}
+
+.cuenta-container {
+  position: relative;
+}
+
+.usuario {
+  cursor: pointer;
+  padding: 8px 15px;
+  font-weight: 500;
+  color: white;
+  border-radius: var(--border-radius);
+  transition: all 0.3s;
+}
+
+.usuario:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cuenta-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 280px;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.cuenta-container:hover .cuenta-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cuenta-info {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.cuenta-nombre {
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.cuenta-email {
+  margin: 0;
+  color: var(--color-text-light);
+  font-size: 14px;
+}
+
+.cuenta-opciones a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.cuenta-opciones a:hover {
+  background: #f8f9fa;
+  color: var(--color-primary);
+}
+
+.btn-cerrar-sesion {
+  display: block;
+  width: calc(100% - 40px);
+  margin: 15px 20px;
+  padding: 10px;
+  background: transparent;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.btn-cerrar-sesion:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+/* ===== CARRUSEL ===== */
+.carrusel-gandi {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  overflow: hidden;
+  height: 450px;
+  border-radius: var(--border-radius);
+}
+
+.carrusel-container {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carrusel-slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.carrusel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carrusel-text {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: var(--border-radius);
+}
+
+.carrusel-text h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.carrusel-text p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.btn-comprar {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: all 0.3s;
+}
+
+.btn-comprar:hover {
+  background: #0d2b4e;
+  transform: translateY(-2px);
+}
+
+.carrusel-prev,
+.carrusel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.carrusel-gandi:hover .carrusel-prev,
+.carrusel-gandi:hover .carrusel-next {
+  opacity: 1;
+}
+
+.carrusel-prev:hover,
+.carrusel-next:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.carrusel-prev {
+  left: 30px;
+}
+
+.carrusel-next {
+  right: 30px;
+}
+
+.carrusel-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.carrusel-dots span {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.carrusel-dots span.active {
+  background: white;
+}
+
+/* ===== SECCIÓN DE LIBROS ===== */
+.destacados {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+}
+
+.destacados h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.libros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+.libro-card {
+  position: relative;
+  background: var(--color-card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.libro-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.libro-card img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+
+.libro-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.libro-card:hover .libro-imagen {
+  transform: scale(1.05);
+}
+
+.libro-card:hover img {
+  opacity: 0.9;
+}
+
+.libro-info {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  flex-grow: 1;
+}
+
+.libro-info h3 {
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.autor {
+  font-size: 14px;
+  color: var(--color-text-light);
+  margin: 0 0 10px 0;
+}
+
+.precio {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 10px 0 15px;
+  color: var(--color-primary);
+}
+
+/* ===== CARRUSEL DE LIBROS ===== */
+.libros-carrusel-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.destacados {
+  position: relative;
+  /* NUEVO */
+}
+
+
+.libros-carrusel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.libros-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 25px;
+  padding: 20px 0;
+}
+
+.libro-card {
+  flex: 0 0 220px;
+  background: var(--color-card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.libro-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.libro-imagen-container {
+  height: 380px;
+  overflow: hidden;
+}
+
+.libro-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.libro-card:hover .libro-imagen {
+  transform: scale(1.05);
+}
+
+.carrusel-flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(122, 166, 227, 0.8);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+
+.carrusel-flecha:hover {
+  background: var(--color-secondary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.libros-carrusel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.flecha-libros-prev,
+.flecha-libros-next {
+  width: 40px;
+  height: 40px;
+  background: rgba(26, 62, 114, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.flecha-libros-prev:hover,
+.flecha-libros-next:hover {
+  background: var(--color-secondary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.flecha-libros-prev {
+  left: -20px;
+}
+
+.flecha-libros-next {
+  right: -20px;
+}
+
+
+
+/* Estilos para la información del libro (manteniendo los originales) */
+.libro-info {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.libro-info h3 {
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.autor {
+  font-size: 14px;
+  color: var(--color-text-light);
+  margin: 0 0 10px 0;
+}
+
+.precio {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 10px 0 15px;
+  color: var(--color-primary);
+}
+
+.btn-agregar {
+  margin-top: auto;
+  width: 100%;
+  padding: 12px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-agregar:hover {
+  background: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rating {
+  color: #f1c40f;
+  margin: 5px 0 10px;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .libros-carrusel-container {
+    padding: 0 30px;
+  }
+
+  .libro-card {
+    flex: 0 0 180px;
+  }
+
+  .libro-imagen-container {
+    height: 240px;
+  }
+}
+
+/* ESTILOS PARA EL BOTÓN DE AGREGAR AL CARRITO */
+.btn-agregar {
+  margin-top: auto;
+  /* Empuja el botón hacia abajo */
+  width: calc(100% - 30px);
+  /* Ancho considerando el padding */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+
+  padding: 12px;
+  background: var(--color-primary);
+  color: rgb(160, 12, 12);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+}
+
+.btn-agregar:hover {
+  background: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icono-carrito {
+  font-size: 16px;
+}
+
+.rating {
+  color: #f1c40f;
+  margin: 5px 0 10px;
+  font-size: 14px;
+}
+
+/* ===== BOLSA DE COMPRAS ===== */
+.bolsa-flotante {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.bolsa-flotante.mostrar {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bolsa-contenido {
+  width: 100%;
+  background: white;
+  padding: 20px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s;
+}
+
+.bolsa-flotante.mostrar .bolsa-contenido {
+  transform: translateX(0);
+}
+
+.bolsa-item {
+  display: flex;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.bolsa-item img {
+  width: 70px;
+  height: 90px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 4px;
+}
+
+.bolsa-item-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.bolsa-item-info p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-light);
+}
+
+.bolsa-total {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  font-weight: 700;
+  text-align: right;
+}
+
+.btn-pagar {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  margin-top: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.btn-pagar:hover {
+  background: var(--color-secondary);
+}
+
+.btn-cerrar {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+}
+
+/* ESTILOS PARA NOTIFICACIÓN */
+.notificacion-carrito {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1100;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.notificacion-carrito.mostrar {
+  opacity: 1;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: rgba(192, 207, 213, 0.85);
+  /* Azul cielo con 85% de opacidad */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #2c3e50;
+  padding: 50px 0 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a3e72;
+  /* Azul más oscuro para contraste */
+}
+
+.footer-section p,
+.footer-link {
+  font-size: 14px;
+  color: rgba(44, 62, 80, 0.9);
+  /* Texto azul oscuro semi-transparente */
+  margin-bottom: 12px;
+  display: block;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.footer-link:hover {
+  color: #1a3e72;
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-icon {
+  color: rgba(44, 62, 80, 0.9);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.social-icon:hover {
+  color: #1a3e72;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+  color: rgba(44, 62, 80, 0.8);
+}
+
+/* Efecto de profundidad para los elementos del footer */
+.footer-section {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.footer-section:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px;
+    height: 60px;
+  }
+
+  .nav-principal {
+    display: none;
+  }
+
+  .nav-categorias {
+    top: 60px;
+    padding: 10px;
+    height: 50px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .main-content {
+    padding-top: 110px;
+  }
+
+  .carrusel-gandi {
+    height: 300px;
+  }
+
+  .carrusel-text {
+    left: 20px;
+    bottom: 20px;
+    max-width: 80%;
+    padding: 20px;
+  }
+
+  .carrusel-text h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .carrusel-text p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .libros-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .libro-card {
+    height: 380px;
+  }
+
+  .libro-card img {
+    height: 240px;
+  }
+
+  .bolsa-flotante {
+    width: 100%;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

@@ -1,0 +1,493 @@
+/* Variables de color - Tema librería */
+:root {
+  --primary-color: #8B4513;
+  /* Marrón silla de montar - color principal */
+  --secondary-color: #D2B48C;
+  /* Marrón claro - madera */
+  --accent-color: #A0522D;
+  /* Marrón tierra quemada */
+  --light-color: #F5F5DC;
+  /* Beige - color de papel antiguo */
+  --dark-color: #3E2723;
+  /* Marrón oscuro */
+  --success-color: #4CAF50;
+  /* Verde para acciones positivas */
+  --danger-color: #F44336;
+  /* Rojo para acciones peligrosas */
+  --warning-color: #FFC107;
+  /* Amarillo para advertencias */
+  --info-color: #2196F3;
+  /* Azul para información */
+  --text-light: #FFFFFF;
+  /* Texto claro */
+  --text-dark: #333333;
+  /* Texto oscuro */
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #7de1ed50;
+  color: var(--text-dark);
+}
+
+/* Barra de navegación */
+.header-admin {
+  background-color: rgba(54, 130, 244, 0.773);
+  color: var(--text-light);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-admin {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.acciones-usuario {
+  position: relative;
+}
+
+.usuario {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.usuario:hover {
+  background-color: var(--accent-color);
+}
+
+/* Dropdown de cuenta */
+.cuenta-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 250px;
+  background-color: var(--light-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  z-index: 100;
+  border: 1px solid var(--secondary-color);
+}
+
+.cuenta-info {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.cuenta-nombre {
+  font-weight: bold;
+  margin: 0 0 0.25rem 0;
+  color: var(--dark-color);
+}
+
+.cuenta-email {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--dark-color);
+  opacity: 0.8;
+}
+
+.cuenta-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Contenedor principal */
+.admin-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.titulo-seccion {
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+}
+
+/* Panel de vidrio (glass) */
+.glass-panel,
+.glass-dropdown,
+.glass-form {
+  background: rgba(213, 244, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.685);
+}
+
+/* Filtros y categorías */
+.filtros-container {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.categorias {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.categoria-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--secondary-color);
+  background-color: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--dark-color);
+}
+
+.categoria-btn.active {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border-color: var(--primary-color);
+}
+
+.categoria-btn:hover:not(.active) {
+  background-color: var(--secondary-color);
+  color: var(--text-dark);
+}
+
+/* Buscador */
+.buscador-libros {
+  display: flex;
+  gap: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.685);
+  border-radius: 10px;
+}
+
+.busqueda-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 20px;
+  width: 250px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.busqueda-input:focus {
+  border-color: var(--primary-color);
+}
+
+/* Lista de libros */
+.lista-libros-container {
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.cabecera-lista,
+.libro-item {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+  padding: 1rem 1.5rem;
+  align-items: center;
+}
+
+.cabecera-lista {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  font-weight: bold;
+}
+
+.libro-item {
+  border-bottom: 1px solid var(--secondary-color);
+  transition: background-color 0.2s;
+}
+
+.libro-item:hover {
+  background-color: rgba(210, 180, 140, 0.1);
+}
+
+.libro-item:last-child {
+  border-bottom: none;
+}
+
+/* Columnas */
+.titulo-col,
+.autor-col,
+.ejemplares-col,
+.precio-col,
+.acciones-col {
+  padding: 0.5rem;
+}
+
+.acciones-col {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Botones generales */
+.glass-btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+}
+
+.btn-buscar {
+  background-color:#54a3f3;
+  color: var(--text-light);
+}
+
+.btn-buscar:hover {
+  background-color: var(--accent-color);
+}
+
+.btn-editar {
+  background-color: var(--info-color);
+  color: var(--text-light);
+}
+
+.btn-editar:hover {
+  background-color: #1976D2;
+}
+
+.btn-eliminar {
+  background-color: var(--danger-color);
+  color: var(--text-light);
+}
+
+.btn-eliminar:hover {
+  background-color: #D32F2F;
+}
+
+.btn-cerrar-sesion {
+  background-color: var(--danger-color);
+  color: var(--text-light);
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.btn-cerrar-sesion:hover {
+  background-color: #D32F2F;
+}
+
+.glass-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
+}
+
+.glass-link:hover {
+  color: var(--accent-color);
+}
+
+/* Botón principal */
+.acciones-principales {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.btn-principal {
+  background-color: var(--success-color);
+  color: var(--text-light);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.btn-principal:hover {
+  background-color: #388E3C;
+}
+
+.btn-principal .icono {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+/* Formulario flotante */
+.formulario-flotante {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.formulario-contenido {
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.form-header h2 {
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.btn-cerrar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dark-color);
+  padding: 0.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.btn-cerrar:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+.glass-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+textarea.glass-input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-hint {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--secondary-color);
+}
+
+.btn-cancelar {
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border: 1px solid var(--danger-color);
+  color: var(--danger-color);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-cancelar:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+.btn-guardar {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--success-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-guardar:hover {
+  background-color: #388E3C;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .cabecera-lista,
+  .libro-item {
+    grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+  }
+
+  .filtros-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buscador-libros {
+    width: 100%;
+  }
+
+  .busqueda-input {
+    width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
